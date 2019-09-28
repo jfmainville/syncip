@@ -1,0 +1,10 @@
+version: "3"
+services:
+  series:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./api:/app/syncip/api
+    env_file:
+      - .env
