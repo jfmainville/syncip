@@ -1,4 +1,4 @@
-# Watchy
+# SyncIP
 
 This repository contains the code to synchronize the local public IP address with my host entries on GoDaddy.
 
