@@ -17,7 +17,7 @@ def ipify_extract_public_ip(ipify_api_url):
     return public_ip
 
 
-def godaddy_extract_host_record(godaddy_api_url, godaddy_api_key, godaddy_api_secret, godaddy_root_domain, godaddy_subdomain, public_ip):
+def godaddy_extract_host_record(godaddy_api_url, godaddy_api_key, godaddy_api_secret, godaddy_root_domain, godaddy_host_record, public_ip):
     api_connection = http.client.HTTPSConnection(godaddy_api_url)
     headers = {
         "Accept": "application/json",
@@ -25,7 +25,7 @@ def godaddy_extract_host_record(godaddy_api_url, godaddy_api_key, godaddy_api_se
         "Authorization": "sso-key " + godaddy_api_key + ":" + godaddy_api_secret
     }
     api_connection.request(
-        method="GET", url="/v1/domains/" + str(godaddy_root_domain) + "/records/A/" + str(godaddy_subdomain), headers=headers)
+        method="GET", url="/v1/domains/" + str(godaddy_root_domain) + "/records/A/" + str(godaddy_host_record), headers=headers)
     godaddy_public_ip_response = api_connection.getresponse()
     godaddy_public_ip_data = godaddy_public_ip_response.read()
     godaddy_public_ip = json.loads(godaddy_public_ip_data)[0]["data"]
