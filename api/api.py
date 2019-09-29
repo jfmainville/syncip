@@ -36,7 +36,7 @@ def godaddy_extract_host_record(godaddy_api_url, godaddy_api_key, godaddy_api_se
         return False
 
 
-def godaddy_update_host_record(godaddy_api_url, godaddy_api_key, godaddy_api_secret, godaddy_root_domain, godaddy_subdomain, public_ip):
+def godaddy_update_host_record(godaddy_api_url, godaddy_api_key, godaddy_api_secret, godaddy_root_domain, godaddy_host_record, public_ip):
     # Send a PUT request to update the required GoDaddy host record
     api_connection = http.client.HTTPSConnection(godaddy_api_url)
     headers = {
@@ -49,7 +49,7 @@ def godaddy_update_host_record(godaddy_api_url, godaddy_api_key, godaddy_api_sec
         "data": public_ip,
     }])
     api_connection.request(
-        method="PUT", url="/v1/domains/" + str(godaddy_root_domain) + "/records/A/" + str(godaddy_subdomain), headers=headers, body=body)
+        method="PUT", url="/v1/domains/" + str(godaddy_root_domain) + "/records/A/" + str(godaddy_host_record), headers=headers, body=body)
     host_record_update_response = api_connection.getresponse()
     host_record_update_status = host_record_update_response.status
     return host_record_update_status
