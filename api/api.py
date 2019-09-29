@@ -30,7 +30,6 @@ def godaddy_extract_host_record(godaddy_api_url, godaddy_api_key, godaddy_api_se
     godaddy_public_ip_response = api_connection.getresponse()
     godaddy_public_ip_data = godaddy_public_ip_response.read()
     godaddy_public_ip = json.loads(godaddy_public_ip_data)[0]["data"]
-    print(godaddy_public_ip)
     if godaddy_public_ip == public_ip:
         return True
     else:
@@ -53,5 +52,4 @@ def godaddy_update_host_record(godaddy_api_url, godaddy_api_key, godaddy_api_sec
         method="PUT", url="/v1/domains/" + str(godaddy_root_domain) + "/records/A/" + str(godaddy_subdomain), headers=headers, body=body)
     host_record_update_response = api_connection.getresponse()
     host_record_update_status = host_record_update_response.status
-    print(host_record_update_status)
     return host_record_update_status
