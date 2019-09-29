@@ -3,7 +3,7 @@ import http.client
 from json import JSONEncoder
 
 
-def ipify_get_public_ip(ipify_api_url):
+def ipify_extract_public_ip(ipify_api_url):
     # Send a GET request to receive the current public IP address information
     api_connection = http.client.HTTPSConnection(ipify_api_url)
     headers = {
