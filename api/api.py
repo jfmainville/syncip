@@ -18,6 +18,7 @@ def ipify_extract_public_ip(ipify_api_url):
 
 
 def godaddy_extract_host_record(godaddy_api_url, godaddy_api_key, godaddy_api_secret, godaddy_root_domain, godaddy_host_record, public_ip):
+    # Send a GET request to check if the current public IP address is current
     api_connection = http.client.HTTPSConnection(godaddy_api_url)
     headers = {
         "Accept": "application/json",
