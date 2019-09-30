@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: syncip-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: syncip
+  template:
+    metadata:
+      labels:
+        app: syncip
+    spec:
+      containers:
+        - name: syncip
+          image: 545150671558.dkr.ecr.us-east-2.amazonaws.com/syncip:latest
+          imagePullPolicy: Always
+          env:
+            - name: IPIFY_API_URL
+              value: api.ipify.org
+            - name: GODADDY_API_URL
+              value: api.godaddy.com
+            - name: GODADDY_ROOT_DOMAINS
+              valueFrom:
+                secretKeyRef:
+                  name: godaddy-root-domain
+                  key: root_domains
+            - name: GODADDY_ROOT_SUBDOMAINS
+              valueFrom:
+                secretKeyRef:
+                  name: godaddy-root-domain
+                  key: root_subdomains
+            - name: GODADDY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: godaddy-api-key
+                  key: api_key
+            - name: GODADDY_API_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: godaddy-api-key
+                  key: api_secret
+      imagePullSecrets:
+        - name: us-east-2-ecr-registry
