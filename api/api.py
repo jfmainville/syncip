@@ -1,6 +1,5 @@
 import json
 import http.client
-from json import JSONEncoder
 
 
 def ipify_extract_public_ip(ipify_api_url):
