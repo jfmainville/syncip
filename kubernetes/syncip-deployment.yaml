@@ -42,4 +42,4 @@ spec:
                   name: godaddy-api-key
                   key: api_secret
       imagePullSecrets:
-        - name: us-east-2-ecr-registry
+        - name: us-east-2-ecr
