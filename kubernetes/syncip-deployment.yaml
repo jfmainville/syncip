@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: syncip
-          image: 545150671558.dkr.ecr.us-east-2.amazonaws.com/syncip:latest
+          image: acrnuagircaetest.azurecr.io/syncip:latest
           imagePullPolicy: Always
           env:
             - name: IPIFY_API_URL
@@ -42,4 +42,4 @@ spec:
                   name: godaddy-api-key
                   key: api_secret
       imagePullSecrets:
-        - name: us-east-2-ecr
+        - name: acr-nuagir-test
